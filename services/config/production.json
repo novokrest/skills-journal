@@ -1,0 +1,19 @@
+{
+    "log": {
+        "file": "../build/services.log",
+        "level": "DEBUG"
+    },
+
+    "database": {
+        "url": "mongodb://127.0.0.1:27017/skills_journal_db"
+    },
+
+    "server": {
+        "host": "0.0.0.0",
+        "port": 3001
+    },
+
+    "auth": {
+        "secret": "__F_I_X_M_E__"
+    }
+}
