@@ -11,13 +11,21 @@ class AppServer {
         this.port = port;
     }
 
-    withCommand(url, command) {
+    withPostCommand(url, command) {
         app.route(url).post((req, res) => command.execute(req, res));
         return this;
     }
 
-    withAuthCommand(url, command) {
+    withAuthPostCommand(url, command) {
         app.route(url).post(
+            passport.authenticate('jwt', { session: false }), 
+            (req, res) => command.execute(req, res)
+        );
+        return this;
+    }
+
+    withAuthGetCommand(url, command) {
+        app.route(url).get(
             passport.authenticate('jwt', { session: false }), 
             (req, res) => command.execute(req, res)
         );
@@ -34,7 +42,8 @@ class AppServer {
 
 module.exports = (config) => 
     new AppServer(app, config.host, config.port)
-        .withCommand('/sign-up', api.SignUpCommand)
-        .withCommand('/sign-in', api.SignInCommand)
-        .withAuthCommand('/user/info', api.UserInfoCommand)
+        .withPostCommand('/sign-up', api.SignUpCommand)
+        .withPostCommand('/sign-in', api.SignInCommand)
+        .withAuthPostCommand('/user/info', api.UserInfoCommand)
+        .withAuthGetCommand('/user/list', api.UserListCommand)
         .start();
