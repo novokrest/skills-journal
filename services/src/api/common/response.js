@@ -17,7 +17,7 @@ class Fail {
     }
 
     build(res) {
-        return res.status(200).json({ error: { code: this.code, message: this.message } });
+        return res.status(500).json({ error: { code: this.code, message: this.message } });
     }
 }
 
@@ -27,7 +27,7 @@ class Error {
     }
 
     build(res) {
-        return res.status(this.errorCode).send();
+        return res.status(this.errorCode).send({ error: { code: '1000', message: 'Internal Error' } });
     }
 }
 
