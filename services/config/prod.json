@@ -1,6 +1,6 @@
 {
     "log": {
-        "file": "../build/services.log",
+        "file": "services.log",
         "level": "info"
     },
 
@@ -10,7 +10,8 @@
 
     "server": {
         "host": "localhost",
-        "port": 30011
+        "port": 30011,
+        "basePath": "/services"
     },
 
     "auth": {
