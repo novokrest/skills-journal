@@ -4,7 +4,9 @@
   "description": "backend side",
   "main": "app.js",
   "scripts": {
-    "prod": "NODE_ENV=production node src/app.js",
+    "prod": "NODE_ENV=prod node src/app.js",
+    "dev": "NODE_ENV=dev node src/app.js",
+    "start": "npm run dev",
     "test": "mocha"
   },
   "repository": {
@@ -28,6 +30,7 @@
     "body-parser": "^1.18.2",
     "config": "^1.29.0",
     "cors": "^2.8.4",
+    "dateformat": "^3.0.2",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
     "log": "^1.4.0",

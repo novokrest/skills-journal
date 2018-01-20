@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const log = require('@log');
 
 module.exports = (dbConfig) => {
     const database = mongoose.connection;
@@ -8,13 +9,19 @@ module.exports = (dbConfig) => {
         promiseLibrary: global.Promise
     });
   
-    database.on('error', error => console.log(`Connection to Mongo database failed: ${error}`));
-    database.on('connected', () => console.log('Connected to Mongo database'));
-    database.on('disconnected', () => console.log('Disconnected from Mongo database'));
+    database.on('error', error => 
+        log.error('Connection to Mongo database failed: url=%s, error=%s', dbConfig.url, error)
+    );
+    database.on('connected', 
+        () => log.info('Connected to Mongo database: url=%s', dbConfig.url)
+    );
+    database.on('disconnected', 
+        () => log.info('Disconnected from Mongo database: url=%s', dbConfig.url)
+    );
   
     process.on('SIGINT', () => {
         database.close(() => {
-            console.log('Coonection to Mongo database was closed');
+            log.info('Connection to Mongo database was closed: url=%s', dbConfig.url);
             process.exit(0);
         });
     });

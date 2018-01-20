@@ -1,15 +1,38 @@
 const fs = require('fs');
-const config = require('config').log;
-const log = require('log');
+const path = require('path');
+const dateformat = require('dateformat');
 const winston = require('winston');
+const logConfig = require('config').log;
+
+if (!fs.existsSync(logConfig.dir)) {
+    fs.mkdirSync(logConfig.dir);
+}
 
 const WinstonLog = new (winston.Logger)({
+    level: logConfig.level,
     transports: [
-        new (winston.transports.Console)(),
-        new (winston.transports.File)({ filename: config.file })
+        new (winston.transports.Console)({
+            timestamp: function() {
+                return dateformat(Date.now());
+            },
+
+            formatter: function(options) {
+                // - Return string will be passed to logger.
+                // - Optionally, use options.colorize(options.level, <string>) to
+                //   colorize output based on the log level.
+                return options.timestamp() + ' ' +
+                    winston.config.colorize(options.level, options.level.toUpperCase()) + ' ' +
+                    (options.message ? options.message : '') +
+                    (options.meta && Object.keys(options.meta).length 
+                        ? '\n\t'+ JSON.stringify(options.meta) 
+                        : '' 
+                    );
+            }
+        }),
+        new (winston.transports.File)({ 
+            filename: path.join(logConfig.dir, logConfig.file) 
+        })
     ]
 });
 
-const Log = new log(config.level, fs.createWriteStream(config.file));
-
-module.exports = Log;
+module.exports = WinstonLog;

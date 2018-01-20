@@ -1,7 +1,7 @@
 {
     "log": {
         "file": "../build/services.log",
-        "level": "DEBUG"
+        "level": "info"
     },
 
     "database": {
@@ -10,7 +10,7 @@
 
     "server": {
         "host": "localhost",
-        "port": 3001
+        "port": 30011
     },
 
     "auth": {

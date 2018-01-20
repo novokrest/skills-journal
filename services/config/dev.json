@@ -1,0 +1,20 @@
+{
+    "log": {
+        "dir": "../logs",
+        "file": "services-dev.log",
+        "level": "debug"
+    },
+
+    "database": {
+        "url": "mongodb://127.0.0.1:27017/skills_journal_dev_db"
+    },
+
+    "server": {
+        "host": "localhost",
+        "port": 30012
+    },
+
+    "auth": {
+        "secret": "auth_secret_dev"
+    }
+}
