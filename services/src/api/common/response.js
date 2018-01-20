@@ -27,7 +27,7 @@ class Error {
     }
 
     build(res) {
-        return res.status(this.errorCode).send({ error: { code: '1000', message: 'Internal Error' } });
+        return res.status(this.errorCode).json({ error: { code: '500', message: 'Internal Error' } });
     }
 }
 
