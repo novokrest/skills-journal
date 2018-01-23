@@ -12,7 +12,7 @@ class UserInfoCommand {
         this.User.findOne({ userName }, (error, user) => {
             if (error) {
                 Log.error(`Failed to find user: userName=${userName}, error=${error}`)
-                return new response.Error(500).build(res)
+                return new response.Fail(500).build(res)
             }
             if (!user) {
                 Log.warning(`User was not found: userName=${req.body.userName}`)
@@ -32,7 +32,7 @@ class UserListCommand {
         this.User.find({}, (error, users) => {
             if (error) {
                 Log.error(`Failed to obtain users: error=${error}}`)
-                return new response.Error(500).build(res)
+                return new response.Fail(500).build(res)
             }
             const userList = users.map(user => ({ userName: user.userName }))
             return new response.Success(userList).build(res)

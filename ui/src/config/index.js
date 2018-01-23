@@ -1,3 +1,3 @@
 export default {
-  apiBaseUrl: `http://${window.location.hostname}:3001`
+  apiBaseUrl: `http://${window.location.hostname}:30012/services`
 }

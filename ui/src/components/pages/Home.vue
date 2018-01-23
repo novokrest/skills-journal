@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <h3>Hi! this is our App's Home</h3>
-    <ul>
-      <li v-if="users != null" v-for="user in users">
-        {{ user.userName }}
-      </li>
-    </ul>
-  </div>
+  <main class="l-home-page">
+    <app-header></app-header>
+
+    <div class="l-home">
+      <h4 class="white--text text-xs-center my-0">
+        Skills Journal
+      </h4>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -37,3 +38,14 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  @import "./../../assets/styles";
+
+  .l-home {
+    background-color: $background-color;
+    margin: 25px auto;
+    padding: 15px;
+    min-width: 272px;
+  }
+</style>

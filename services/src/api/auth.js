@@ -1,6 +1,6 @@
 const validator = require('./common/validator');
 const response = require('./common/response');
-const Log = require('@log');
+const log = require('@log');
 
 class SignUpCommand {
     constructor(User) {
@@ -20,9 +20,10 @@ class SignUpCommand {
 
         user.save(error => {
             if (error) {
-                Log.error(`Failed to save new user: userName=${user.userName}, error=${error}`);
-                return new response.Error(500).build(res);
+                log.error(`Failed to save new user: userName=${user.userName}, error=${error}`);
+                return new response.Fail(500, 'DB Error').build(res);
             }
+            log.info('User was saved successfully: userName=%s', user.userName);
             return new response.Success({userName: user.userName}).build(res);
         });
     }
@@ -42,18 +43,20 @@ class SignInCommand {
 
         this.User.findOne({ userName: req.body.userName }, (error, user) => {
             if (error) {
-                Log.error(`Failed to find user: userName=${req.body.userName}`);
-                return new response.Error(500).build(res);
+                log.error(`Failed to find user: userName=${req.body.userName}, error=${error}`);
+                return new response.Fail(500, 'DB Error').build(res);
             }
             if (!user) {
-                Log.warning(`User was not found: userName=${req.body.userName}`);
+                log.warning(`User was not found: userName=${req.body.userName}`);
                 return new response.Fail(300, 'Authentication failed: user was not found').build(res);
             }
             user.comparePassword(req.body.password, (error, matches) => {
                 if (!error && matches) {
                     const token = this.Token.create({ user });
+                    log.info('User was authenticated successfully: userName=%s', user.userName)
                     return new response.Success({ userName: user.userName, token: token }).build(res);
                 }
+                log.warning('User was not authenticated: incorrect password=%s', req.body.password);
                 return new response.Fail(401, 'Authentication failed: incorrect password').build(res);
             });
         });

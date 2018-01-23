@@ -1,8 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import * as Auth from '@/components/pages/auth'
+
+// Pages
 import Authentication from '@/components/pages/auth/Authentication'
 import Home from '@/components/pages/Home'
+
+// Global components
+import Header from '@/components/Header'
+
+// Register components
+Vue.component('app-header', Header)
 
 Vue.use(Router)
 
@@ -16,7 +24,10 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      components: {
+        default: Home,
+        header: Header
+      },
       meta: {
         authRequired: true
       }

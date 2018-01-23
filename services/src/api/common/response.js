@@ -21,18 +21,7 @@ class Fail {
     }
 }
 
-class Error {
-    constructor(errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    build(res) {
-        return res.status(this.errorCode).json({ error: { code: '500', message: 'Internal Error' } });
-    }
-}
-
 module.exports = {
     Success: Success,
-    Fail: Fail,
-    Error: Error
+    Fail: Fail
 };

@@ -46,7 +46,7 @@ class AppServer {
 }
 
 module.exports = (config) => 
-    new AppServer(app, config.host, config.port)
+    new AppServer(app, config.host, config.port, config.basePath)
         .withPostCommand('/sign-up', api.SignUpCommand)
         .withPostCommand('/sign-in', api.SignInCommand)
         .withAuthPostCommand('/user/info', api.UserInfoCommand)

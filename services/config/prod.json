@@ -9,9 +9,7 @@
     },
 
     "server": {
-        "host": "localhost",
-        "port": 30011,
-        "basePath": "/services"
+        "port": 30011
     },
 
     "auth": {

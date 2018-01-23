@@ -1,0 +1,8 @@
+{"level":"info","message":"Express server was started on port 30011","timestamp":"2018-01-20T10:19:22.084Z"}
+{"level":"info","message":"Connected to Mongo database: url=mongodb://127.0.0.1:27017/skills_journal_db","timestamp":"2018-01-20T10:19:22.090Z"}
+{"res":{"statusCode":404},"req":{"url":"/services/sign-in","headers":{"host":"localhost:30011","user-agent":"curl/7.54.0","accept":"*/*"},"method":"POST","httpVersion":"1.1","originalUrl":"/services/sign-in","query":{}},"responseTime":3,"level":"info","message":"HTTP POST /services/sign-in","timestamp":"2018-01-20T10:19:32.345Z"}
+{"level":"info","message":"127.0.0.1 - - [20/Jan/2018:10:19:32 +0000] \"POST /services/sign-in HTTP/1.1\" 404 156 \"-\" \"curl/7.54.0\"\n","timestamp":"2018-01-20T10:19:32.346Z"}
+{"level":"info","message":"Disconnected from Mongo database: url=mongodb://127.0.0.1:27017/skills_journal_db","timestamp":"2018-01-20T10:20:02.379Z"}
+{"level":"info","message":"Express server was started on port 30011","timestamp":"2018-01-20T10:20:44.077Z"}
+{"level":"info","message":"Connected to Mongo database: url=mongodb://127.0.0.1:27017/skills_journal_db","timestamp":"2018-01-20T10:20:44.083Z"}
+{"level":"info","message":"Disconnected from Mongo database: url=mongodb://127.0.0.1:27017/skills_journal_db","timestamp":"2018-01-20T10:20:44.873Z"}

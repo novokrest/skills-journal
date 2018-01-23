@@ -1,3 +1,5 @@
+const log = require('@log');
+
 class Headers {
     constructor(headers) {
         this.headers = headers;
@@ -15,6 +17,9 @@ class Body {
 
     validate(req) {
         const missedKeys = Object.keys(this.template).filter(key => !req.body.hasOwnProperty(key));
+        if (missedKeys.length > 0) {
+            log.warn('Request missed keys: missed=[%s], available=[%s]', missedKeys, Object.keys(req.body));
+        }
         return (!!req.body) && (missedKeys.length == 0);
     }
 }
