@@ -26,7 +26,7 @@
 <script>
 export default {
   data () {
-    const defaultImg = 'http://bocwaterhydraulics.com/wp-content/uploads/2016/04/mechanical-gears-.png'
+    const defaultImg = 'http://frontierstrategygroup.com/wp-content/uploads/2015/03/Business-Intelligence-Tools.png'
     return {
       skills: [
         { name: 'driving', img: defaultImg },
