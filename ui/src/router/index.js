@@ -5,6 +5,8 @@ import * as Auth from '@/components/pages/auth'
 // Pages
 import Authentication from '@/components/pages/auth/Authentication'
 import Home from '@/components/pages/Home'
+import AddSkill from '@/components/pages/AddSkill'
+import ListSkills from '@/components/pages/ListSkills'
 
 // Global components
 import Header from '@/components/Header'
@@ -31,6 +33,19 @@ const router = new Router({
       meta: {
         authRequired: true
       }
+    },
+    {
+      path: '/add',
+      name: 'AddSkill',
+      components: {
+        default: AddSkill,
+        header: Header
+      }
+    },
+    {
+      path: '/list',
+      name: 'ListSkills',
+      component: ListSkills
     }
   ]
 })
